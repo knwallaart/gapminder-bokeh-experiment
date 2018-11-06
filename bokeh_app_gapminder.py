@@ -17,7 +17,7 @@ import numpy as np
 
 #CREATING THE GAPMINDER DATASET:   
 gapminder = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv')
-infmort = pd.read_excel("C:\\Users\\Kimberley\\Documents\\Python intro script\\gapminder data\\indicator_gapminder_infant_mortality.xlsx")
+infmort = pd.read_excel("indicator_gapminder_infant_mortality.xlsx")
 infmort = infmort.iloc[:,[0,153,158,163,168,173,178,183,188,193,198,203,208]]
 infmort.rename(columns={'Infant mortality rate':'country'}, inplace=True)
 infmortmelt = pd.melt(frame=infmort, id_vars='country', var_name = "year", value_name='infant_mortality_rate') 
@@ -30,7 +30,7 @@ np.setdiff1d(gapminder.country, infmortmelt.country) # array(['korea, dem. rep.'
             #merge gapminder and infmortmelt:
 gapminder = pd.merge(left=gapminder, right=infmortmelt, on=["country","year"], how="left")
 
-fertility = pd.read_excel("C:\\Users\\Kimberley\\Documents\\Python intro script\\gapminder data\\indicator_gapminder_fertility.xlsx")
+fertility = pd.read_excel("indicator_gapminder_fertility.xlsx")
 fertility = fertility.iloc[:,[0,153,158,163,168,173,178,183,188,193,198,203,208]]
 fertility.rename(columns={'Total fertility rate':'country'}, inplace=True)
 fertilitymelt = pd.melt(frame=fertility, id_vars='country', var_name = "year", value_name='fertility') 
